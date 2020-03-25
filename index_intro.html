@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JavaScript Intro</title>
+</head>
+<body>
+		<br >
+		<h1>JS Intro</h1>
+
+		<div id="root"></div>
+
+
+		<script>
+
+			// var fn5 = 100;
+			// function fn5(){
+			// 	console.log('Hellow from Fn5');
+			// }
+			// // var fn5 = 100;
+			// fn5();
+
+
+
+
+
+			/*
+			Объявить (создать) переменную user, присвоить ей строковое значение "Иваныч",
+			создать переменную age, присвоить ей числовое значение 20. Создать функцию с
+			именем printUser и принимающую 2 аргумента (параметра) из внешнего мира - userName
+			и userAge, которая будет возвращать строку "Пользователь _______, возраст _______",
+			вместо пропусков вы должны вставить соответствующие значения из аргументов функции.
+			Далее вызвать функцию, передать ей в качестве значений параметров переменные name и age,
+			затем вывести в консоль результат выполнения функции printUser.
+			*/
+			function printUser(userName, userAge) {
+
+				return 'Пользователь ' + userName + ', возраст: ' + userAge;
+			}
+
+			var user1 = 'Иваныч';
+			var age1 = 300;
+
+
+
+			// console.log('Пользователь ' + userName + ', возраст: ' + userAge);
+
+			// console.log("Привет", user1, ", много лет ", age1);
+			console.log( printUser(user1, age1) );
+
+
+			/*
+
+			*/
+
+			function initiateUser(userFirstName, userLasName, userAge, userAddress, userPhoneCode, userPhoneNumber) {
+
+				var ob = {
+					firstName: userFirstName,
+					lastName: userLasName,
+					age: userAge,
+					address: userAddress,
+					phone: {
+						code: userPhoneCode,
+						number: userPhoneNumber,
+					},
+					fullName: userFirstName + ' ' + userLasName,
+
+					printUserName: function () {
+						console.log( this.fullName );
+					},
+
+					printUserAddress: function () {
+						console.log("Адрес: ", this.address);
+					},
+
+					printFullInfo: function () {
+						// console.log("Информация о пользователе: ",
+						// 	this.fullName,
+						// 	"; ",
+						// 	this.age,
+						// 	"; ",
+						// 	this.address,
+						// 	"; (",
+						// 	this.phone.code,
+						// 	") ",
+						// 	this.phone.number,
+						// );
+
+						console.log("Информация о пользователе: ");
+						console.log(this.fullName);
+						console.log(this.age);
+						console.log(this.address);
+						console.log(this.phone.code);
+						console.log(this.phone.number);
+					},
+				};
+
+				return ob;
+
+			}
+
+			var userObj1 = initiateUser("Иван", "Петров", 30, "г.Москва, ул.Генерала Дорохова, д.30", "495", "555-87-99");
+
+			userObj1.printUserName();
+			userObj1.printUserAddress();
+			userObj1.printFullInfo();
+
+
+
+
+			var a = 10;
+			var b = 15;
+			var c = a + b;
+
+
+			console.log("c = ", c, num);
+			printSomeStr();
+
+			/*
+			много
+			строчный
+			комментарий
+			 ывлаылвр
+			 */
+
+			// var num = 5555333; // однострочный комментарий
+			var num = 5555333; // тип данных ЧИСЛО или NUMBER
+			printSomeStr = 10;
+
+
+
+			console.log("printSomeStr = ", printSomeStr);
+
+			const rrrr = "5555";
+
+			var str1 = "строка \" с двойными кавычками"; // тип данных СТРОКА или STRING
+			var str2 = '<p alighn="center"></p>'; // тип данных СТРОКА или STRING
+
+			var b1 = true; // тип данных BOOLEAN - правда/ложь
+			var b2 = false; // тип данных BOOLEAN - правда/ложь
+
+			var u; // тип данных UNDEFINED
+			var u1 = undefined; // тип данных UNDEFINED
+
+			var n = null; // тип данных NULL - ПУСТОТА
+
+			// с = null;
+			u = 10;
+
+			var ob = {};
+
+			var user = {
+				name: "Вася", // строка
+				age: 30, // число
+				married: true, // булевое
+				// gender: "Male",
+				address: "121350, ул Ярцевская, д.50", // строка
+				phone: {
+					code: "495",
+					number: "1235577",
+				}
+			};
+
+			var brand = "Toyota";
+
+			var car = {
+				brand: "VAZ",
+				model: "2199",
+				color: "red",
+				number: "G888FF199",
+			};
+
+			car.brand = brand;
+			car.brand = "BMW";
+
+			var myCar = {};
+
+			// КОПИРОВАНИЕ ДАННЫХ ОБЪЕКТА
+			myCar.brand = car.brand;
+			myCar.model = car.model;
+			myCar.color = car.color;
+			myCar.number = car.number;
+
+			myCar.brand = "Mercedes";
+
+			console.log("У нас есть юзер: ", user.name, user.gender);
+			console.log("У нас есть машина: ", car);
+			console.log("У нас есть машина myCar: ", myCar);
+
+			var result = num + 50;
+
+			console.log("Разные типы данных", typeof result, result);
+
+			var g = "40";
+			var h = 10;
+
+			console.log("Результат сложения", +g + h);
+
+			function myFunc(name = "Noname", age = "-") { // то что мы указываем между круглых скобок - это входные параметры функции (аргументы)
+				// тело фукнции
+				// проводим вычисления
+
+				return "Имя юзера:" + name + ", возраст: " + age;
+			}
+
+			console.log("Вызов функции: ", myFunc()   );
+
+			// нужно сделать функцию, которая принимает в качестве входного параметра аргумент USER - объект (см выше)
+			// далее нужно создать новый объект (внутри функции) и скопировать в него данные из USER
+			// далее вернуть копию USER во внешний мир
+
+			// var user = {
+			// 	name: "Вася",
+			// 	age: 30,
+			// 	married: true,
+			// 	// gender: "Male",
+			// 	address: "121350, ул Ярцевская, д.50",
+			// 	phone: {
+			// 		code: "495",
+			// 		number: "1235577",
+			// 	}
+			// };
+		function copyUser(originalUser) {
+			var copy = {};
+
+			copy.name = originalUser.name;
+			copy.age = originalUser.age;
+			copy.married = originalUser.married;
+			copy.address = originalUser.address;
+			copy.phone = {};
+			copy.phone.code = originalUser.phone.code;
+			copy.phone.number = originalUser.phone.number;
+			copy.metaData = "this is copy";
+
+			return copy++; // copy = copy + 1
+		}
+
+			function copyUser2(originalUser) {
+
+				return {
+					name: originalUser.name,
+					age: originalUser.age,
+					married: originalUser.married,
+					address: originalUser.address,
+					phone: {
+						code: originalUser.phone.code,
+						number: originalUser.phone.number,
+
+					},
+					metaData: "this is copy 2",
+				};
+
+			}
+			console.log("original user ", user );
+			console.log("FUNC RESULT ", copyUser(user) );
+			console.log("FUNC2 RESULT ", copyUser2(user) );
+
+
+			var v = 100;
+			var f = 15;
+			var k = 20;
+
+			if( k < f || f > v) { // начало тела IFa
+				console.log("Сработал IF, т.е. k > f && f > v")
+			} // конец тела IFa
+			else {
+				console.log("Сработал ELSE, т.е. v < f")
+			}
+
+			// Операторы сравнения:
+			// >   - больше
+			// <   - меньше
+			// ==  - сравнение
+			// ===   - сравнение с учутом типа данных
+			// !=    - неравенства
+			// !==   - неравенства с учетом типа
+			// результат любого из операторов сравнения - это логический тип = TRUE или FALSE
+
+			// alert( v != 100 );
+			// alert( v === "100" );
+			// alert( v !== "100" );
+
+			// alert( v != "100" );
+			// alert(undefined === null )
+			// alert(undefined == null )
+			// var tt = prompt("Введите ваш номер телефона", "555555-000");
+			// console.log("Значение из prompt", tt);
+
+			// var res = confirm("Вы точно решили удалить эту запись??????");
+			// console.log("Значение из confirm", res);
+
+			if( k == 10  || k == 11) { // начало тела IFa
+				console.log("Сработал IF, k == 10")
+			} else if( k != 20) {
+				console.log("Сработал IF, k == 20")
+			} else if( k == 30) {
+				console.log("Сработал IF, k == 30")
+			} else {
+				console.log("Сработал ELSE")
+			}
+
+			switch (k) {
+				case 10:
+					console.log("Сработал CASE, k == 10");
+					break;
+				case 20:
+					console.log("Сработал CASE, k == 20");
+					break;
+				case 30:
+					console.log("Сработал CASE, k == 30");
+					break;
+				default: console.log("Сработал DEFAULT");
+			}
+
+			// ЛОГИЧЕСКИЕ ОПЕРАТРРЫ
+			// &&  -> AND -> И    -> аналог математической операции УМНОЖИТЬ
+			// ||  -> OR  -> ИЛИ  -> аналог математической операции ПЛЮС
+			//  !  -> NOT -> НЕ   -> отрицание
+
+			var bRes = k < 18 && k < 11 && k > 9;
+			var bRes1 = k < 18 || k < 11 || k > 9;
+
+			// ЦИКЛЫ
+			// for
+			// в перой части условия - это инициализация данных - то, что нужно сделать перед началом работы цикла
+			// во второй части - это условие работы цикла
+			// третья часть - это набор инструкций, которые выполняются каждый раз в конце тела фор
+
+			// var i = 123123;
+			//
+			// for (i = 0, k = 5 ; i < 10 ; i++, k-- ) {
+			// 	console.log("For:: k =", k, "; i=", i);
+			// }
+
+			for (var i = 0, j = 5 ; i < 10 ; i++, j-- ) {
+				if  (i == 5) {
+					continue;
+				}
+				console.log("For:: j =", j, "; i=", i);
+			}
+
+			i = 0;
+			for (;;) {
+				console.log("For with NO conditions:: j =", i);
+				if ( i > 10) {
+					break;
+				}
+				i++;
+			}
+
+			var m = 0;
+
+			while (m < 10) {
+				console.log("While:: m =", m);
+				m++;
+			}
+			num = 6;
+			var y = 0
+			do {
+				console.log("DO While:: y =", y);
+				y++;
+			} while (y < 6);
+
+			function printSomeStr() {
+				console.log("Some text from printSomeStr");
+			}
+
+			function printSomeStr() {
+				console.log("Some text from printSomeStr 2");
+			}
+
+			var g = 0;
+
+			g = 10;
+
+
+			var typo = 10;
+			var result = null;
+
+			if( typo > 20) { // начало тела IFa
+				result = "Сработал IF, typo > 20";
+			} else {
+				result = "Сработал ELSE, typo < 20";
+			}
+
+			var result2 = typo > 20 ? "Сработал ТЕРНАРНЫЙ TRUE, typo > 20" : "Сработал ТЕРНАРНЫЙ FALSE, typo < 20";
+
+			console.log("result2", result2); console.log("result2", result2);
+
+			var bob = {
+				name: "Bob", 						 // свойство
+				age: 100500, 						 // свойство
+				printInfo: function () { // метод
+					var name = "Вася";
+					var age = 30;
+					console.log("Hi this is: ", this.name, ", age: ", this.age, ", address: ", this.phone.code);
+				},
+				phone: {  						 // свойство
+					code: 495,
+					number: 555767,
+				}
+			};
+
+
+			var copyPrintBob = bob.printInfo;
+			var copyBob = JSON.parse( JSON.stringify(bob) );
+
+
+			copyBob.printInfo = bob.printInfo;
+
+			bob.printInfo();
+
+			// copyPrintBob(); // window.copyPrintBob();
+			console.log("BOB COPY:: ", copyBob);
+			// сделать копирование боба + отдалживание метода
+			// показать таблицу с приоритетом операций
+			// степени, сложения += и инкременты
+
+
+			window.n2 = undefined;
+			window.l2 = undefined;
+			window.g5 = undefined;
+
+			var g2 = n2 = l2 = 90;
+
+
+			function test500() {
+				var a = g5 = 10;
+			}
+
+			test500();
+
+			console.log("Странная переменная G5 ", g5);
+
+			console.log("Странные переменные ", g2, n2, l2);
+
+
+			var pp = 10;
+
+			// pp++; // взять предыдущее значение и к нему прибавить 1
+			// pp = pp + 1;
+			// ++pp;
+
+			console.log("переменная pp как она есть = ", pp );
+			console.log("переменная pp вместе с ++", ++pp );
+			console.log("переменная pp после плюсов = ", pp );
+			pp--; // декремент = взять значение из переменной и вычесть 1
+			--pp; // сначала вычесть, потом использовать
+
+			var rr = 50;
+
+			rr = rr + 15; //
+			rr += 15;			// эквивалент строчке выше
+
+			rr -= 15;			// эквивалент строчке выше
+			rr *= 15;			// эквивалент строчке выше
+			rr /= 15;			// эквивалент строчке выше
+
+			if (rr >= 100 ); // {...}
+			if (rr > 100 || rr == 100); // {...}
+
+			console.log("Возведение в степень: ", rr, rr ** 2); // две звездочки - это возведение в степень
+
+			var str1 = "some text"; // 's', 'o', 'm', 'e', ' ', ....
+			var str1 = str1 + "sdfsdf";
+
+			console.log("Операции со строкой: ", str1.toUpperCase() );
+
+
+			String() // люая функция в строке - это объект.
+			Number();
+			Boolean();
+
+
+			// String.toUpperCase()
+			// String.repeat()
+
+
+
+			// function ssss() {
+			// 	var b = 5;
+			//
+			// 	return b;
+			// }
+			//
+			// ssss.someProperty = "Какой-то текст";
+			//
+			// console.log( ssss.someProperty );
+
+			// МАССИВЫ - в JS массивы - это просто объекты, но специальные у которых есть супер быстрый механизм обхода числовых ключей
+			// Array();
+			// индексация (или нумерация) элементов массива в JS начинается с нуля
+
+			var ms = []; // мы просто создали пустой массив
+			var ms2 = [1, 2, 3, 4]; // создал массив из 4х элементов
+			var stringArray = ["яблоко", "банан", "абрикос"      ]; // массив из строк
+			var stringArray2 = ["яблоко", 5000, "банан", "абрикос", 1095]; // массив из строк и чисел
+
+		var arrayOfObjects = [
+				{
+					name: "Иваныч",
+					age: 300,
+				},
+				{
+					name: "Петрович",
+					age: 400,
+					address: "какой-то адрес проживания",
+				},
+				{
+					name: "Татьяныч",
+					age: 360,
+					phone: {
+						code: 495,
+						number: "555-33-44",
+					}
+				},
+			];
+
+		stringArray[3] = 'киви';
+		// "яблоко", "банан", "абрикос", 'киви']
+		stringArray[10] = 'грейпфрут';
+		// "яблоко", "банан", "абрикос", 'киви', , , , , , , 'грейпфрут' ]
+
+
+		console.log("Элемент массива stringArray с индексом 2", stringArray[2], stringArray);
+		console.log("Пустой элемент массива (статус EMPTY)", stringArray[7] );
+
+		stringArray.length ; // получить длинну массива
+
+		for(var i = 0; i < stringArray.length; i++) {
+			console.log("Массив, индекс (номер) = ", i ,": значение = ", stringArray[ i ]);
+		}
+
+			// currentItem - текущий элемент массива, т.е. тот который обрабатывается forEach в один момент времени
+			// index - индекс текущего элемента массива
+			// currentMS - указатель на сам массив (который сейчас обрабатывается forEach)
+			// stringArray.forEach(function (currentItem, index, currentMS)
+			stringArray.forEach(function (v, i) { // v -> value - значение; i - index -> индекс массива
+				console.log("forEach, индекс = ", i ,": значение = ", v);
+			});
+
+
+			var mapResult = stringArray.map(function (value, i) {
+				var res = "map(), индекс = " + i + ": значение = " + value;
+				return res;
+			});
+
+			console.log("mapResult = ", mapResult);
+
+			var ms3 = [1, 2, 5, 6 ,100, 20, 43, 55, 32, 21, 4, 48, 29];
+
+			var filterResult = ms3.filter(function (value) {
+				return value <= 40;
+			});
+
+			console.log("filterResult = ", filterResult);
+
+
+			// пример - проверка аргументов, которые передаются на вход колбэку даже тогда,
+			// когда мы их не перечислям в качестве параметры функции
+			stringArray.forEach(function () {
+				console.log("forEach, проверка параметров колбэка для forEach ", arguments);
+			});
+
+			stringArray.push("арбуз");
+			stringArray.push("тыква");
+			stringArray.push("дыня"); // добавляет в конец массива элемент
+
+			stringArray.shift(); // удаляет первый элемент
+			stringArray.unshift("морковка"); // добавляет элемент под нулевым индексом (номер 1 в человеческом понимании)
+
+
+
+			console.log("filterResult with PUSH = ", JSON.parse(JSON.stringify(stringArray)));
+
+			var popResult = stringArray.pop(); // удаляет элемент из конца массива
+
+			console.log("filterResult with POP = ", popResult, stringArray);
+
+			var sortResult = ms3.sort(function (a, b) {
+				// конфигурация возвращаемого значения:
+				// a < b возвращаем 1 и a > b возвращаем -1 => от большего к меньшему
+				// a > b возвращаем 1 и a <>> b возвращаем -1 => от меньшего к большему
+				if (a < b) return 1;
+				else if (a > b) return -1;
+				return 0;
+			});
+
+			console.log("sortResult = ", sortResult);
+
+			var sortResultOfUser = arrayOfObjects.sort(function (a, b) {
+				if (a.age > b.age) return 1;
+				else if (a.age < b.age) return -1;
+				return 0;
+			});
+
+			console.log("sortResultOfUser = ", sortResultOfUser);
+
+			// var tmpMs =  stringArray; // так мы копируем только ссылку на старый массив
+			// var tmpMs =  stringArray.slice(); // так копируется весь массив
+			var tmpMs =  stringArray.slice(4, 12 ); // так копируется часть массива (включая пустые ячейки - empty)
+			console.log(tmpMs);
+
+			//
+			// var spliceResult = stringArray.splice(4, 0, ms3, {name: "Петрович", age: 100500 }, "Папая", "Макадамия");
+			var spliceResult = stringArray.splice(4, 0, ...ms3);
+			console.log("spliceResult = ", spliceResult, stringArray);
+
+			console.log(stringArray.lastIndexOf("банан"));
+
+			var reduceResult = ms3.reduce(function (acc, currentValue, currentIndex, arrayAsIs) {
+
+				console.log("REDUCE: Index", currentIndex, "val=", currentValue, ", аккумулятор = ", acc);
+				return acc += currentValue;
+			});
+
+			var resultConcat = [ ...ms3, ...stringArray];
+			console.log("resultConcut = ", resultConcat);
+
+			var superUser = {
+				name: "Петрович",
+				age: 100500,
+			};
+
+			var userAdditionalData = {
+				phone: "456*559*99*88",
+				address: "dsfkhjsdk ksh dfkjsh fkljshdf",
+			};
+
+			var objectConcat = { ...superUser, ...userAdditionalData };
+			console.log("objectConcat = ", objectConcat);
+
+			var obTmp = { // объект с числовыми ключами
+				0: 10,
+				1: 20,
+				2: 30,
+			};
+
+			console.log("obTmp = ", obTmp);
+
+			var ms5 = [1,2,3,,,,10];
+			var ms6 = new Array(); // аналог строки выше - т.е. создается пустой массив
+
+			ms6[0] = "1111";
+			ms6[1] = "1111";
+
+
+			function calcFactorial( n ) {
+				if (n <= 1) {
+					return 1;
+				}
+				console.log("Inside calcFactorial ", n);
+				return n * calcFactorial( n - 1);
+			}
+
+			// 9 * (9-1) => 8 * (8-1) => 7 * (7-1) ...... 1
+
+			console.log("calcFactorial = ", calcFactorial(9));
+
+
+			function User(fName, lName, age, phone, address) {
+				this.fName = fName;
+				this.lName = lName;
+				this.age = age;
+				this.phone = phone;
+				this.address = address;
+			}
+
+			var userAgentProvokator = new User(
+				"Василий",
+				"Иваныч",
+				200,
+				"495-555-66-22",
+				"г.Москва, ул.Петровско-Разумовская д.6, кв.222"
+			); // -> {}.User()
+
+			var userAgentModificator = new User(
+				"Антонио",
+				"Моралес",
+				250,
+				"495-555-66-22",
+				"г.Москва, ул.Петровско-Разумовская д.6, кв.225"
+			);
+
+			userAgentModificator.__proto__ = userAgentProvokator;
+
+			userAgentProvokator.children = "got 4 kids";
+
+			//console.log("userAgentProvokator = ", userAgentProvokator);
+			console.log("userAgentModificator = ", userAgentModificator);
+
+			console.log("Function User = ", User.prototype.__proto__ === Object.prototype );
+
+			console.log("Равны ли объекты ", {name: "Васек"} === {name: "Васек"} );
+
+
+
+
+		</script>
+</body>
+</html>

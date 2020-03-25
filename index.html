@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Title</title>
+</head>
+<body>
+
+<script>
+
+	printUserName("Umberto Rodrigues");
+
+	// printer("Марь Иванна");
+
+	var name = "Василий Петрович";
+
+
+	function printUserName(name) {
+		console.log("user = ", name);
+	}
+
+	var printer = printUserName;
+
+	printer("Петро");
+
+	var printer2 = function (name) {
+		console.log("this is printer2, user = ", name);
+	}
+
+	// СТРЕЛОЧНЫЕ ФУНКЦИИ
+	// var printer3 = () => {}
+	// var printer3 = function () {} - аналогия
+
+	var printer3 = (name) => {
+		console.log("this is printer3, user = ", name);
+	}
+
+	// var printer4 = name => name + " - гений делового общения";
+	var printer4 = name => {
+		var result = name + " - гений делового общения";
+		return result;
+	};
+
+	console.log(printer4("Семен Семеныч"));
+
+	function printUserNameArgs(name) {
+		console.log("printUserNameArgs аргументы = ", name, arguments);
+	}
+
+	printUserNameArgs('Маша', 'Даша', 'Саша', 'Петя');
+
+
+</script>
+
+</body>
+</html>
