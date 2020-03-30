@@ -10,8 +10,51 @@
 
 		<div id="root"></div>
 
+		<input id="user" type="text" value="" name="user" placeholder="user name"><br>
+		<input id="age" type="text" value="" name="age" placeholder="user age"><br>
+		<input id="address" type="text" value="" name="address" placeholder="user address"><br>
+		<input id="married" type="checkbox" name="married" placeholder="married"><br>
+
+		<button onclick="createUser()">make user</button>
+
 
 		<script>
+
+			var USERS = [];
+
+			function createUser() {
+				var userName = document.getElementById("user").value; // window.document
+				var userAge = document.getElementById("age").value; // window.document
+				var userAddress = document.getElementById("address").value; // window.document
+				var userStatus = document.getElementById("married").checked; // window.document
+
+				USERS.push(initiateUser(userName, null, userAge, userAddress));
+
+				USERS.forEach(printToHTML);
+
+				document.getElementById("user").value = '';
+				document.getElementById("age").value = '';
+				document.getElementById("address").value = '';
+				document.getElementById("married").checked = false;
+
+
+				// (userFirstName, userLasName, userAge, userAddress, userPhoneCode, userPhoneNumber)
+				console.log("Val = ", document.getElementById("married"));
+
+			}
+
+			function printToHTML(ob) {
+				var root = document.getElementById("root");
+
+				Object.values(ob).forEach(function (item) {
+					if (item
+						&& typeof item !== "function"
+						&& typeof item !== "object"
+					) {
+						root.innerHTML = root.innerHTML + item + '<br>';
+					}
+				})
+			}
 
 			// var fn5 = 100;
 			// function fn5(){
@@ -667,7 +710,7 @@
 				this.address = address;
 			}
 
-			var userAgentProvokator = new User(
+			var userAgentProvokator = new User( // userAgentProvokator.User()
 				"Василий",
 				"Иваныч",
 				200,
@@ -694,8 +737,89 @@
 
 			console.log("Равны ли объекты ", {name: "Васек"} === {name: "Васек"} );
 
+			console.log("Object.getPrototypeOf( ", Object.getPrototypeOf(userAgentProvokator) );
+
+			// var ms6 = [for(var i=0; i < 100; i++) {i}];
+
+			// console.log("Массив ms6 ", ms6 );
+			var keysResult = Object.keys(userAgentModificator);
+			var keysValues = Object.values(userAgentModificator);
+			var keysEntries = Object.entries(userAgentModificator);
+			console.log("keysResult (keys of userAgentModificator) ", keysResult, keysValues, keysEntries );
+
+			var keysResult2 = Object.keys(userAgentModificator).map(function (item) {
+					return "Ключ " + item + " = " + userAgentModificator[item]; // userAgentModificator.fName
+			});
+			console.log("keysResult2 ", keysResult2 );
+			var value = 100;
+
+			for (value in stringArray) { // for in
+				console.log("For In = ", value, stringArray[value] );
+			}
+
+			for(value of stringArray) { // FOR OF
+				console.log("For Off = ", value );
+			}
+
+			// ЗАМЫКАНИЕ
+			// window.keysResult == keysResult
+			// window.keysValues == keysValues
+
+			function closureExample() {
+				var Joe = Michle = "My name is Joe!";
+
+				console.log("Привет из closureExample: ", Joe, keysValues)
+
+			}
+			// window.Michle = "My name is Joe!";
+
+			closureExample();
+			console.log("Привет из ВНЕ closureExample: ", Michle);
+
+			function summ(a, b) {
+				return a + b;
+			}
+
+			console.log("summ: ", summ(100, 35));
+
+			// тоже самое с помощью замыкания
+
+			function summ2(a) {
+				var text = "Ответ будет таким: ";
+				// в стеке переменных внутри LexicalEnvironment запомнить переменные - a, text
+
+				return function sum3(b) { // LexicalEnvironment - сохранена только 1 переменная - b
+					return text + (a + b);
+					// sum3
+				}
+			}
+
+			console.log("summ2: ", summ2(100)(75) );
 
 
+
+			function summCurrying() {
+				var summ = argsSum(arguments);
+
+				function argsSum(args) {
+					var localSum = 0;
+						for(var i = 0; i < args.length; i++) {
+							localSum += args[i];
+						}
+					return localSum;
+				}
+
+				return function sumHelper() {
+					if (arguments.length >= 1) {
+						summ += argsSum(arguments);
+						return sumHelper;
+					}
+					return summ;
+				}
+
+			}
+
+			console.log("summCurrying: ", summCurrying(1, 2,3,4,5,100)(75, 500, 1000, 400)(50)(30)() );
 
 		</script>
 </body>
