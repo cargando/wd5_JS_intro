@@ -12,6 +12,8 @@
 	</div>
 
 
+
+
 	<script>
 		var ms = [
 			["Яблоко", "Фрукт", "сладкий", "Антоновка", "6 шт"],
@@ -55,6 +57,9 @@
 				var tr = document.createElement('tr');
 
 				var dataRow = data[i];
+				var tdNum = document.createElement('td');
+				tdNum.innerText = i + 1;
+				tr.appendChild(tdNum);
 
 				for (var j = 0; j < dataRow.length; j++) {
 					var td = document.createElement('td');
@@ -66,7 +71,7 @@
 			}
 		}
 
-		function createLayout(data) {
+		function createLayout(data) { // data = массивом
 			var container = document.createElement('div');
 			var row = document.createElement('div');
 			var col = document.createElement('div');
@@ -78,19 +83,70 @@
 			container.appendChild(row);
 			row.appendChild(col);
 
-			col.appendChild(data);
+			data.forEach(function (item) {
+				col.appendChild(item);
+			});
+
 
 			return container;
 		}
 
-		var headers = ["Название", "Тип", "Вкус", "Сорт", "к-во в кг"];
+		function createControls() {
+			var button = document.createElement('button');
+			var input = document.createElement('input');
+			var form = document.createElement('form');
+			var div = document.createElement('div');
+			var label = document.createElement('label');
+
+
+			div.setAttribute('class', 'form-group');
+
+			label.innerText = 'Введите номер строки, для удаления из таблицы'
+
+			button.setAttribute('class', 'btn btn-primary');
+			button.innerText = 'Удалить cтроку';
+			button.addEventListener('click', buttonClick);
+
+			div.appendChild(label);
+			div.appendChild(input);
+			div.style.width = "50%";
+
+			input.setAttribute('class', 'form-control');
+			input.setAttribute('type', 'number');
+
+			form.appendChild(document.createElement('br'));
+			form.appendChild(div);
+			form.appendChild(button);
+
+			return form;
+		}
+
+		function buttonClick(e) {
+			e.preventDefault();
+			var input = document.getElementsByTagName("input")[0].value;
+
+			if (!input || input == "0") {
+				alert("Давай вводи норм значение!");
+				return;
+			}
+			console.log("Меня нажали", input, e);
+
+
+			// if ()
+
+		}
+
+		var headers = ["#", "Название", "Тип", "Вкус", "Сорт", "к-во в кг"];
 		var tableInfo = createTable(headers);
+		var form = createControls();
 
 		printDataToTable(tableInfo.tbody, ms);
 
+
 		document
 			.getElementById("root")
-			.appendChild(createLayout(tableInfo.table));
+			.appendChild(createLayout([tableInfo.table, form]));
+
 
 
 
