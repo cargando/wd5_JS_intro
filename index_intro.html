@@ -10,15 +10,40 @@
 
 		<div id="root"></div>
 
-		<input id="user" type="text" value="" name="user" placeholder="user name"><br>
+		<input id="user" class="b1 b2 b3 c4" type="text" value="" name="user" placeholder="user name"><br>
 		<input id="age" type="text" value="" name="age" placeholder="user age"><br>
 		<input id="address" type="text" value="" name="address" placeholder="user address"><br>
 		<input id="married" type="checkbox" name="married" placeholder="married"><br>
 
 		<button onclick="createUser()">make user</button>
 
+		<div id="childRoot"><p id="firstParagraph">Параграф 1 <span>555</span> <small>777</small></p><p>Параграф 2</p><p>Параграф 3</p>
+		</div>
 
 		<script>
+
+			document.title = 'Новый TITLE - JS INTRO';
+			document.write('<h2>YO!!!!</h2>')
+
+			var childRootElement = document.getElementById("childRoot");
+
+			var firstParagraphElement = document.getElementById("firstParagraph");
+
+			console.log("childNodesResult", childRootElement.childNodes[0].childNodes);
+			console.log("childNodesResult First Child", childRootElement.firstChild);
+			console.log("childNodesResult Last Child", childRootElement.lastChild);
+			console.log("childNodesResult Parent Element", childRootElement.parentElement);
+
+
+			console.log("firstParagraphElement Siblings", firstParagraphElement.nextSibling.nextSibling);
+
+
+
+
+
+
+			console.log("getAttribute: ", document.getElementById("user").getAttribute("placeholder"));
+			console.log("className: ", document.getElementById("user").className);
 
 			var USERS = [];
 
@@ -27,6 +52,8 @@
 				var userAge = document.getElementById("age").value; // window.document
 				var userAddress = document.getElementById("address").value; // window.document
 				var userStatus = document.getElementById("married").checked; // window.document
+
+
 
 				USERS.push(initiateUser(userName, null, userAge, userAddress));
 

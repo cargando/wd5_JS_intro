@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM Examples</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+
+	<div id="root">
+
+	</div>
+
+
+	<script>
+		var ms = [
+			["Яблоко", "Фрукт", "сладкий", "Антоновка", "6 шт"],
+			["Груша", "Фрукт", "сладкий", "Белоснежная", "5 шт"],
+			["Клубника", "Ягода", "сладкая", "Трофейная", "40 шт"],
+			["Арбуз", "Бахчевые", "сладкий", "Мегамен", "0,2 шт"],
+			["Дыня", "Бахчевые", "сладкая", "Торпеда", "0,25 шт"],
+			["Голубика", "Ягода", "кисло-сладкая", "Обычная", "360 шт"],
+			["Лимон", "Фрукт", "кислый", "Турецкий", "12 шт"],
+		];
+
+		function createTable(headers) {
+
+			var table = document.createElement('table');
+			var thead = document.createElement('thead');
+			var tbody = document.createElement('tbody');
+			var tr = document.createElement('tr');
+
+			table.appendChild( thead );
+			table.appendChild( tbody );
+			thead.appendChild( tr );
+
+			for (var i = 0; i < headers.length; i++) {
+				var th = document.createElement('th');
+				th.innerText = headers[ i ];
+				tr.appendChild( th );
+			}
+
+			table.setAttribute('class', 'table table-striped');
+
+			return {
+				table: table, // это обычная олдскульная форма объявления свойства у объекта
+				tbody, // это новая, укороченная форма записи свойства объекта - доступна начиная с ES6
+			}
+
+		}
+
+		function printDataToTable(tbody, data) {
+
+			for (var i = 0; i < data.length; i++) {
+				var tr = document.createElement('tr');
+
+				var dataRow = data[i];
+
+				for (var j = 0; j < dataRow.length; j++) {
+					var td = document.createElement('td');
+					td.innerText = dataRow[ j ];
+					tr.appendChild(td);
+				}
+
+				tbody.appendChild(tr);
+			}
+		}
+
+		var headers = ["Название", "Тип", "Вкус", "Сорт", "к-во в кг"];
+		var tableInfo = createTable(headers);
+
+		printDataToTable(tableInfo.tbody, ms);
+
+		document.getElementById("root").appendChild(tableInfo.table);
+
+
+
+	</script>
+
+</body>
+</html>
