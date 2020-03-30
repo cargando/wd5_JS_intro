@@ -66,12 +66,31 @@
 			}
 		}
 
+		function createLayout(data) {
+			var container = document.createElement('div');
+			var row = document.createElement('div');
+			var col = document.createElement('div');
+
+			container.setAttribute('class', 'container');
+			row.setAttribute('class', 'row');
+			col.setAttribute('class', 'col');
+
+			container.appendChild(row);
+			row.appendChild(col);
+
+			col.appendChild(data);
+
+			return container;
+		}
+
 		var headers = ["Название", "Тип", "Вкус", "Сорт", "к-во в кг"];
 		var tableInfo = createTable(headers);
 
 		printDataToTable(tableInfo.tbody, ms);
 
-		document.getElementById("root").appendChild(tableInfo.table);
+		document
+			.getElementById("root")
+			.appendChild(createLayout(tableInfo.table));
 
 
 
