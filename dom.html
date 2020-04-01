@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<title>DOM Examples</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
 
@@ -65,8 +66,17 @@
 				tr.appendChild(tdNum);
 
 				for (var j = 0; j < dataRow.length; j++) {
+					var textHolder = document.createElement('span');
 					var td = document.createElement('td');
-					td.innerText = dataRow[ j ];
+
+					textHolder.addEventListener('click', handleCellClick);
+
+					textHolder.innerText = dataRow[ j ];
+					textHolder.style.cursor = 'context-menu';
+					td.appendChild(textHolder);
+					td.style.position = 'relative';
+					td.setAttribute('data-row', i);
+					td.setAttribute('data-cell', j);
 					tr.appendChild(td);
 				}
 
@@ -169,20 +179,74 @@
 
 		}
 
-		var headers = ["#", "Название", "Тип", "Вкус", "Сорт", "к-во в кг"];
-		var tableInfo = createTable(headers);
-		var form = createControls();
 
-		printDataToTable(tableInfo.tbody, ms);
+		function renderPage() {
+			var headers = ["#", "Название", "Тип", "Вкус", "Сорт", "к-во в кг"];
+			window.tableInfo = createTable(headers);
+			var form = createControls();
 
+			printDataToTable(tableInfo.tbody, ms);
 
-		document
-			.getElementById("root")
-			.appendChild(createLayout([tableInfo.table, form]));
+			var root = document.getElementById("root");
+			root.innerHTML = '';
+			root.appendChild(createLayout([tableInfo.table, form]));
+
+		}
+
 
 //// ////////////////
 
+		function handleCellClick(e) {
+			var cellInput = document.createElement('input');
+			var cellOkButton = document.createElement('i');
+			var parentTd = e.target.parentElement;
 
+			// <i class="fas fa-check-circle"></i>
+			// <i class="fas fa-ban"></i>
+
+			cellOkButton.setAttribute('class', 'fas fa-check-circle text-success');
+			cellOkButton.style.fontSize = '25px';
+			cellOkButton.style.position = 'absolute';
+			cellOkButton.style.top = '18px';
+			cellOkButton.style.left = '115px';
+			cellOkButton.style.cursor = 'pointer';
+
+
+			cellInput.setAttribute('class', 'form-control');
+
+			cellInput.value = e.target.innerText;
+			cellInput.style.width = '100px';
+			parentTd.innerHTML = '';
+			console.log("Кликнули на ячейку", parentTd.style);
+
+			parentTd.appendChild(cellInput);
+			parentTd.appendChild(cellOkButton);
+			// удалить текст из ячейки
+
+			cellOkButton.addEventListener('click', handleSaveCellDataClick);
+
+
+		}
+
+		function handleSaveCellDataClick(e) {
+
+			var inputValue = e.target.value;
+			var parentTd = e.target.parentElement;
+
+			var rowId = parentTd.getAttribute('data-row');
+			var cellId = parentTd.getAttribute('data-cell');
+
+			console.log("Данные ячейки: ", rowId, cellId, e.target.previousSibling.value);
+
+			// Number( _строка_ ) // - эквиваленты
+			// +rowId // - эквиваленты - операция приведения типа из строки в ЧИСЛО
+			ms[ +rowId ][ Number(cellId) ] = e.target.previousSibling.value;
+
+			renderPage();
+
+		}
+
+		renderPage();
 
 	</script>
 
