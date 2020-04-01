@@ -199,6 +199,7 @@
 		function handleCellClick(e) {
 			var cellInput = document.createElement('input');
 			var cellOkButton = document.createElement('i');
+			var cellCancelButton = document.createElement('i');
 			var parentTd = e.target.parentElement;
 
 			// <i class="fas fa-check-circle"></i>
@@ -211,6 +212,13 @@
 			cellOkButton.style.left = '115px';
 			cellOkButton.style.cursor = 'pointer';
 
+			cellCancelButton.setAttribute('class', 'fas fa-window-close text-danger');
+			cellCancelButton.style.fontSize = '25px';
+			cellCancelButton.style.position = 'absolute';
+			cellCancelButton.style.top = '18px';
+			cellCancelButton.style.left = '145px';
+			cellCancelButton.style.cursor = 'pointer';
+
 
 			cellInput.setAttribute('class', 'form-control');
 
@@ -221,9 +229,11 @@
 
 			parentTd.appendChild(cellInput);
 			parentTd.appendChild(cellOkButton);
+			parentTd.appendChild(cellCancelButton);
 			// удалить текст из ячейки
 
 			cellOkButton.addEventListener('click', handleSaveCellDataClick);
+			cellCancelButton.addEventListener('click', renderPage);
 
 
 		}
