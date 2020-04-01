@@ -10,7 +10,10 @@
 	<div id="root">
 
 	</div>
-
+	<br><br>
+	<button onclick="document.getElementById('deleteButton').click();" class="btn btn-secondary">клик по кнопку удалить</button>
+<br><br>
+	<button onclick="document.getElementById('inputValue').focus();" class="btn btn-secondary">поставить фокус в инпут</button>
 
 
 
@@ -93,6 +96,7 @@
 
 		function createControls() {
 			var button = document.createElement('button');
+			var button2 = document.createElement('button');
 			var input = document.createElement('input');
 			var form = document.createElement('form');
 			var div = document.createElement('div');
@@ -104,19 +108,27 @@
 			label.innerText = 'Введите номер строки, для удаления из таблицы'
 
 			button.setAttribute('class', 'btn btn-primary');
+			button.setAttribute('id', 'deleteButton');
 			button.innerText = 'Удалить cтроку';
 			button.addEventListener('click', buttonClick);
+
+			button2.setAttribute('class', 'btn btn-secondary');
+			button2.innerText = 'Поменять местами (со следующим)';
+			button2.addEventListener('click', buttonReplaceClick);
 
 			div.appendChild(label);
 			div.appendChild(input);
 			div.style.width = "50%";
 
 			input.setAttribute('class', 'form-control');
+			input.setAttribute('id', 'inputValue');
+			input.setAttribute('placeholder', 'Введите номер строки');
 			input.setAttribute('type', 'number');
 
 			form.appendChild(document.createElement('br'));
 			form.appendChild(div);
 			form.appendChild(button);
+			form.appendChild(button2);
 
 			return form;
 		}
@@ -129,10 +141,31 @@
 				alert("Давай вводи норм значение!");
 				return;
 			}
-			console.log("Меня нажали", input, e);
 
+			// var table = document.querySelector("table.table-striped tbody tr");
+			// var table = document.querySelectorAll("table.table-striped tbody tr");
 
-			// if ()
+			// console.log("Table = ", tableInfo.tbody.getElementsByTagName("tr"));
+
+			var tableBody = document.getElementsByTagName('table')[0].getElementsByTagName('tbody')[0];
+			var allTr = tableBody.getElementsByTagName("tr");
+
+			tableBody.removeChild(allTr[ input - 1 ]);
+
+			// console.log("Table = ", );
+		}
+
+		function buttonReplaceClick(e) {
+			e.preventDefault();
+			var input = document.getElementsByTagName("input")[0].value;
+
+			if (!input || input == "0") {
+				alert("Давай вводи норм значение!");
+				return;
+			}
+			var tableRows = document.querySelectorAll("table.table-striped tbody tr");
+
+			tableRows[0].parentElement.insertBefore(tableRows[ input ], tableRows[ input - 1 ]);
 
 		}
 
@@ -147,6 +180,7 @@
 			.getElementById("root")
 			.appendChild(createLayout([tableInfo.table, form]));
 
+//// ////////////////
 
 
 
